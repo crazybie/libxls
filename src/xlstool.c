@@ -676,8 +676,11 @@ char *xls_getfcell(xlsWorkBook* pWB, struct st_cell_data* cell, BYTE *label)
         break;
     case XLS_RECORD_RK:
     case XLS_RECORD_NUMBER:
+        #ifdef XLS2CSV_PATCH
+        #else
         ret = malloc(retlen);
         snprintf(ret, retlen, "%lf", cell->d);
+        #endif
 		break;
 		//		if( RK || MULRK || NUMBER || FORMULA)
 		//		if (cell->id==0x27e || cell->id==0x0BD || cell->id==0x203 || 6 (formula))
